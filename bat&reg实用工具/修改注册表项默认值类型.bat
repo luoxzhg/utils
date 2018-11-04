@@ -1,0 +1,1 @@
+reg add "HKEY_CLASSES_ROOT\----------"  /ve  /d  "\"%1\" %*"  /t REG_EXPAND_SZ  /f
