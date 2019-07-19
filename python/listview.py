@@ -49,7 +49,7 @@ class listview(metaclass=_meta):
         self.step = step
 
     def __repr__(self):
-        return 'listview([' + ', '.join(str(e) for e in self) + '])'
+        return 'listview([' + ', '.join(str(e) for e in self if e is not self else '[...]') + '])'
 
     def __iter__(self):
         return (self.lst[i] for i in range(self.start, self.stop, self.step))
