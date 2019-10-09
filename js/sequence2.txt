@@ -1,0 +1,29 @@
+// Build a sequential chain of promises from the elements in an array
+function sequence(array, callback) {
+    function chain(array, index) {
+        if (index === array.length) {
+            return Promise.resolve();
+        }
+
+        return Promise.resolve(
+            callback(array[index])
+        ).then(
+            () => chain(array, index + 1)
+        );
+    }
+
+    return chain(array, 0);
+}
+
+var products = ['sku-1', 'sku-2', 'sku-3'];
+
+sequence(products,
+    sku => getInfo(sku).then(info => console.log(info))
+).catch(function (reason) {
+    console.log(reason);
+});
+
+function getInfo(sku) {
+    console.log('Requested info for ' + sku);
+    return Promise.resolve(sku);
+}

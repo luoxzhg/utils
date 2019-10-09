@@ -1,0 +1,15 @@
+// Build concurrency promises from the elements in an array
+function concurrence(array, callback) {
+    return array.map(item => Promise.resolve(callback(item)));
+}
+
+var products = ['sku-1', 'sku-2', 'sku-3'];
+
+concurrence(products,
+    sku => getInfo(sku).then(info => console.log(info))
+);
+
+function getInfo(sku) {
+    console.log('Requested info for ' + sku);
+    return Promise.resolve(sku);
+}

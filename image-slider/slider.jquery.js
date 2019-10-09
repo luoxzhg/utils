@@ -23,10 +23,8 @@
 
                 if (isBack) {
                     if (_atStart()) {
-                        // TODO: 不完美，需修改，把最后一个元素插入到首部
-                        //animateSliderToEnd(duration);
-                        //return;
                         // TODO: 效率需要改进
+                        // 添加一个伪首部（复制原尾部）、伪尾部（复制原首部）
                         $sliderList.prepend($sliderItems.last());
                         $sliderItems = $sliderList.children("li");
                         animateSliderDirection("-", 0);
@@ -34,9 +32,6 @@
                     direction = "+";
                 } else {
                     if (_atEnd()) {
-                        // TODO: 不完美，需修改，把第一个元素插入到尾部
-                        // animateSliderToStart(duration);
-                        // return;
                         $sliderList.append($sliderItems.first());
                         $sliderItems = $sliderList.children("li");
                         animateSliderDirection("+", 0);
