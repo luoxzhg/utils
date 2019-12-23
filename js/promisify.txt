@@ -1,0 +1,38 @@
+// fn([...,]callback:(err,...args)=>any)
+
+function promisify(fn) {
+    if (typeof fn !== "function")
+        throw new TypeError("must be a function");
+
+    const wrapper = function (...args) {
+        const self = this;
+        let result;
+        const promise = new Promise((resolve, reject) => {
+            result = fn.call(self, ...args, (err, ...args) => {
+                if (err){
+                    return reject(err);
+                }
+                if (args.length <= 1) {
+                    resolve(...args);
+                }
+                else {
+                    resolve(args);
+                }
+            })
+        });
+        promise.result = result;
+        return promise;
+    }
+    return wrapper;
+}
+
+// test
+// function errback(callback){
+//     setImmediate(()=>callback(undefined, "Async message"));
+// }
+
+// errback((err, message) => console.log(message));
+
+// const promise = promisify(errback)();
+// console.log(promise.result);
+// promise.then(message=>console.log(message));

@@ -1,0 +1,7 @@
+console.log(foo);  // function foo(){ ... }
+
+var foo=1;
+console.log(foo);  // 1
+
+function foo(){ console.log("foo function");}
+console.log(foo);  // 1

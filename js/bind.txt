@@ -1,0 +1,3 @@
+function bind(func, thisValue, ...boundArgs) {
+	return (...args) => func.call(thisValue, ...boundArgs, ...args);
+}

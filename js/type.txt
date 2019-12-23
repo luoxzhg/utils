@@ -1,0 +1,4 @@
+// returns a string '[object Type]'
+const type = value => {
+	return Object.prototype.toString.call(value);
+}
