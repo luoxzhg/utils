@@ -1,0 +1,9 @@
+const once = f => {
+	let done = false;
+	return function(){
+		if (!done) {
+			done = true;
+			f.apply(this, arguments);
+		}
+	}
+}

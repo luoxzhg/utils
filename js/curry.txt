@@ -1,0 +1,11 @@
+const curry = fn => {
+    if (typeof fn !== 'function')
+        throw Error('a function is required');
+
+    return function curriedFn() {
+        //console.log(arguments);
+        if (arguments.length < fn.length)
+            return (...args) => curriedFn( ...(Array.from(arguments).concat(args)) );
+        return fn(...arguments);
+    }
+}

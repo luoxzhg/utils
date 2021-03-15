@@ -1,0 +1,10 @@
+const partial = (fn, ...partialArgs) => {
+    return (...args) => {
+        const realArgs = [];
+        let i = 0, j = 0;
+        for (const arg of partialArgs) {
+            realArgs[i++] = (arg !== undefined ? arg : args[j++]);
+        }
+        return fn.apply(null, realArgs)
+    }
+}
